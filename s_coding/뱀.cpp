@@ -1,3 +1,6 @@
+
+//백준 https://www.acmicpc.net/problem/3190
+//뱀
 #include<iostream>
 using namespace std;
 
