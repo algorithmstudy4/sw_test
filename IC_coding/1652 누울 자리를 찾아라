@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int n = 0;
+char arr[100][100];
+
+int wSeat() {
+	int seat = 0;
+	
+	for(int w = 0; w < n; w++) {
+		int count = 0;
+		for(int h = 0; h < n; h++) {
+			if(arr[w][h] != 'X') {
+				count++;
+				if(h == n - 1) {
+					if(count >= 2) {
+						seat++;
+					}
+				}
+			}
+			else {
+				if(count >= 2) {
+					seat++;
+				}
+				count = 0;
+			}
+		}
+	}
+	
+	return seat;
+}
+
+int hSeat() {
+	int seat = 0;
+	
+	for(int h = 0; h < n; h++) {
+		int count = 0;
+		for(int w = 0; w < n; w++) {
+			if(arr[w][h] != 'X') {
+				count++;
+				if(w == n - 1) {
+					if(count >= 2) {
+						seat++;
+					}
+				}
+			}
+			else {
+				if(count >= 2) {
+					seat++;
+				}
+				count = 0;
+			}
+		}
+	}
+	
+	return seat;
+}
+	
+int main() 
+{	
+	cin >> n;
+	
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
+			cin >> arr[i][j];
+		}
+	}
+	
+	cout << wSeat() << " " << hSeat() << endl;
+}
