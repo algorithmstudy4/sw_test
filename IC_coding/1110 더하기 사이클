@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+int num;
+
+int countCycle() 
+{
+	int n = num;
+	int count = 0;
+	
+	while(n != num || count == 0) {
+		int tmp = n;
+		int newN = 0;
+		if(n < 10) {
+			n *= 10;
+		}
+		while(n != 0) {
+			newN += n % 10;
+			n /= 10;
+		}
+		
+		newN %= 10;
+		newN += tmp % 10 * 10;
+		n = newN;
+		count++;
+	}
+	
+	return count;
+}
+
+int main()
+{
+	cin >> num;
+	
+	cout << countCycle() << endl;
+}
