@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
+using namespace std;
+
+int n;
+int medal[100][4];
+vector<pair<int, int> > ranking;
+
+bool comparison(const pair<int,int> &a,const pair<int,int> &b)
+{
+       return a.second > b.second;
+}
+
+void rank()
+{
+	for(int i = 0; i < n; i++) {
+		int c = medal[i][0];
+		int s = medal[i][1] * 3 + medal[i][2] * 2 + medal[i][3];
+		ranking.push_back(pair<int, int>(c, s));
+	}
+	
+	sort(ranking.begin(), ranking.end(), comparison);
+	
+	int r = 1;
+	for(int i = 0; i < n; i++) {
+		int score = ranking[i].second;
+		i++;
+		while(score == ranking[i].second && i != n) {
+			ranking[i].second = r;
+			i++;
+		}
+		r++;
+	}
+}
+
+int main() 
+{
+	cin >> n;
+	
+	medal[n][4];
+	
+	int country;
+	cin >> country;
+	
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < 4; j++) {
+			cin >> medal[i][j];
+		}
+	}
+	
+	rank();
+	
+	for(int i = 0; i < ranking.size(); i++) {
+		if(country == ranking[i].first) {
+			cout << ranking[i].second << endl;
+		}
+	}
+}
