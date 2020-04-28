@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string.h>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int graph[100][100] = {0};
+int visited[100][100] = {0};
+int m, n;
+int dy[4] = {1, -1, 0, 0};
+int dx[4] = {0, 0, 1, -1};
+int cnt = 0;
+
+void print()
+{
+	for(int i = 0; i < m; i++) {
+		for(int j = 0; j < n; j++) {
+			cout << visited[i][j];
+		}
+		cout << endl;
+	 }	
+	 cout << endl;
+}
+
+void DFS(int y, int x) 
+{	
+    cnt++;
+    visited[y][x]++;
+    
+	for(int i=0;i<4;i++){
+        int ny=y+dy[i];
+        int nx=x+dx[i];
+        
+        if(ny<0 || ny>=m || nx<0 || nx>=n)
+            continue;
+        
+        if(!graph[ny][nx] && !visited[ny][nx]){
+            DFS(ny,nx);
+        }
+    }
+}
+int main()
+{
+	int k;
+	cin >> m >> n >> k;
+	
+	int x1, y1, x2, y2;
+	
+	for(int i = 0; i < k; i++) {
+		cin >> x1 >> y1 >> x2 >> y2;
+		for (int y = y1; y < y2; y++)
+            for (int x = x1; x < x2; x++)
+				graph[y][x] = 1;
+	}
+	
+	vector<int> rslt;
+	
+	for(int i = 0; i < m; i++) {
+		for(int j = 0; j < n; j++) {
+			if(!visited[i][j] && !graph[i][j]) {
+				cnt = 0;
+				DFS(i, j);
+				rslt.push_back(cnt);
+			}
+		}
+	}
+	
+	cout << rslt.size() << endl;
+	
+	sort(rslt.begin(), rslt.end());
+
+    for (int i = 0; i < rslt.size(); i++)
+		cout << rslt[i] << " ";
+
+    cout << endl;
+}
