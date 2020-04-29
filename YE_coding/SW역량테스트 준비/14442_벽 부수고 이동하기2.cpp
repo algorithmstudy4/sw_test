@@ -1,5 +1,5 @@
-ï»¿//ë°±ì¤€ https://www.acmicpc.net/problem/14442
-//ë²½ ë¶€ìˆ˜ê³  ì´ë™í•˜ê¸° 2
+//¹éÁØ https://www.acmicpc.net/problem/14442
+//º® ºÎ¼ö°í ÀÌµ¿ÇÏ±â 2
 #include<iostream>
 #include<string>
 #include<queue>
@@ -11,13 +11,13 @@ struct Dir {
 };
 
 struct state {
-	int x, y, wall; // ë²½ëš« í• ìˆ˜ ìˆëŠ”ê°€, 0 ~ 10
+	int x, y, wall; // º®¶Õ ÇÒ¼ö ÀÖ´Â°¡, 0 ~ 10
 };
 
 Dir dir[4] = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };
 int N, M, K, res;
 string arr[1000];
-bool flag, visit[1000][1000][11]; // ë²½ëš« ì—¬ë¶€ê¹Œì§€ ì²´í¬
+bool flag, visit[1000][1000][11]; // º®¶Õ ¿©ºÎ±îÁö Ã¼Å©
 
 int main() {
 	cin >> N >> M >> K;
@@ -39,7 +39,7 @@ int main() {
 			int w = q.front().wall;
 			q.pop();
 
-			//íƒˆì¶œ
+			//Å»Ãâ
 			if (x == N - 1 && y == M - 1) {
 				flag = true;
 				break;
@@ -50,13 +50,13 @@ int main() {
 				int yy = y + dir[i].y;
 				int ww = w;
 
-				if (xx < 0 || xx >= N || yy < 0 || yy >= M || visit[xx][yy][ww]) continue; // ì¢Œí‘œì´íƒˆ or ì´ë¯¸ ë°©ë¬¸
+				if (xx < 0 || xx >= N || yy < 0 || yy >= M || visit[xx][yy][ww]) continue; // ÁÂÇ¥ÀÌÅ» or ÀÌ¹Ì ¹æ¹®
 
-				if (arr[xx][yy] == '0') { // ë²½ì´ ì—†ì„ë•Œ
+				if (arr[xx][yy] == '0') { // º®ÀÌ ¾øÀ»¶§
 					q.push({ xx, yy, ww });
 					visit[xx][yy][ww] = true;
 				}
-				else if (arr[xx][yy] == '1' && ww) { // ë²½ì´ ìˆì§€ë§Œ ëš«ì„ ìˆ˜ ìˆì„ë•Œ
+				else if (arr[xx][yy] == '1' && ww) { // º®ÀÌ ÀÖÁö¸¸ ¶ÕÀ» ¼ö ÀÖÀ»¶§
 					ww -= 1;
 					q.push({ xx, yy, ww });
 					visit[xx][yy][ww] = true;
