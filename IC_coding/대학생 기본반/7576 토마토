@@ -1,0 +1,60 @@
+#include<iostream>
+#include<queue>
+#define MAX 1000
+
+using namespace std;
+
+int m, n;
+int graph[MAX][MAX] = {0};
+int dx[4] = {1, -1, 0, 0};
+int dy[4] = {0, 0, -1, 1};
+queue<pair<int, int> > q;
+void BFS() 
+{
+	while(!q.empty()) {
+		int cx = q.front().first;
+		int cy = q.front().second;
+		q.pop();
+		
+		for(int i = 0; i < 4; i++) {
+			int nx = cx + dx[i];
+			int ny = cy + dy[i];
+			
+			if(ny < 0 || ny >= m || nx < 0 || nx >= n) {
+				continue;
+			}
+			if(!graph[nx][ny]) {
+                graph[nx][ny] = graph[cx][cy] + 1;
+                q.push(pair<int, int>(nx, ny));
+			}
+		}
+	}
+}
+int main()
+{
+	cin >> m >> n;
+	
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			cin >> graph[i][j];
+			if(graph[i][j] == 1) {
+				q.push(pair<int, int>(i, j));
+			}
+		}
+	}
+	
+	BFS();
+	
+	int mx = -1000;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (!graph[i][j]) {
+            	cout << "-1" << endl;
+            	return 0;
+            }
+            mx = max(mx, graph[i][j]);
+        }
+    }
+
+	cout << mx - 1 << endl;
+}
