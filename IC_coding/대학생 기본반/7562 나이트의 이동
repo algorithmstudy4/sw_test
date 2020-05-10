@@ -1,0 +1,85 @@
+#include <iostream>
+#include <queue>
+#define MAX 300
+
+using namespace std;
+
+int map[MAX][MAX] = {0};
+int check[MAX][MAX] = {0};
+queue<pair<int, int> > q;
+pair<int, int> from;
+pair<int, int> to;
+int dx[8] = {1,2,2,1,-1,-2,-2,-1 };
+int dy[8] = { 2,1,-1,-2,-2,-1,1,2 };
+int l;
+
+void print()
+{
+	cout << "print------------" << endl;
+	for(int i = 0; i < l; i++) {
+		for(int j = 0; j < l; j++) {
+			cout << check[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << "print end---------" << endl;
+}
+void initialize(int arr[MAX][MAX])
+{
+	for(int i = 0; i < l; i++) {
+		for(int j = 0; j < l; j++) {
+			arr[i][j] = 0;
+		}
+	}
+}
+void BFS()
+{
+	q.push(pair<int,int> (from.first, from.second));
+	check[from.first][from.second] = 1;
+	
+	while(!q.empty()) {
+		int cx = q.front().first;
+		int cy = q.front().second;
+		
+		q.pop();
+		
+		for(int i = 0; i < 8; i++) {
+			int nx = cx + dx[i];
+			int ny = cy + dy[i];
+			
+			if(nx < 0 || nx >= l || ny < 0 || ny >= l) {
+				continue;
+			}
+			
+			if(!check[nx][ny]) {
+				map[nx][ny] = map[cx][cy] + 1;
+				check[nx][ny] = 1;
+				q.push(pair<int,int> (nx, ny));
+			}
+		}
+	}
+}
+int main()
+{
+	int tc;
+	cin >> tc;
+	
+	for(int t = 0; t < tc; t++) {
+		cin >> l;
+		
+		initialize(map);
+		initialize(check);
+		
+		int fromX, fromY;
+		cin >> fromX >> fromY;
+		from = make_pair(fromX, fromY);
+		
+		int toX, toY;
+		cin >> toX >> toY;
+		to = make_pair(toX, toY);
+	
+		BFS();
+		
+		cout << map[to.first][to.second] << endl;
+	}
+}
