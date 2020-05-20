@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> 
+#include <functional>
+
+using namespace std;
+
+int n, p;
+int newScore;
+vector<int> score;
+
+bool isSame(int idx)
+{
+	for(int i = idx; i < score.size() - 1; i++) {
+		if(score[i] != score[i + 1]) return false;
+	}
+	return true;
+}
+int main()
+{
+	cin >> n >> newScore >> p;
+	
+	int s;
+	for(int i = 0; i < n; i++) {
+		cin >> s;
+		score.push_back(s);
+	}
+	
+	score.push_back(newScore);
+	sort(score.begin(), score.end(), greater<int>());
+	
+	int i = 1;
+	int rslt = -1;
+	while(1) {
+		if(newScore == score[i - 1]) {
+			if(!isSame(i - 1) || n + 1 <= p) {
+				rslt = i;
+				break;
+			}
+		}
+		if(i == p + 1 || i == score.size()) {
+			//cout << "i : " << i << " p : " << p << endl;
+			break;
+		}
+		i++;
+	}
+	
+	cout << rslt << endl;
+}
