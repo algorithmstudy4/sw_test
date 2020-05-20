@@ -2,7 +2,7 @@
 solve algo problems 
 
 ## 5월 3주차 (20일 제출)
--삼성 SW 역량 테스트 기출 문제
+- 삼성 SW 역량 테스트 기출 문제
 1. Puyo Puyo 
 2. 연구소
 3. 치킨배달
