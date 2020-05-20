@@ -1,4 +1,4 @@
-# algorithm
+# Algorithm
 solve algo problems 
 
 ## 5월 3주차 (20일 제출)
