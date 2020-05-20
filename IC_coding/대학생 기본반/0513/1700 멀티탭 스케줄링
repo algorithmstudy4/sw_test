@@ -1,0 +1,69 @@
+#include <iostream>
+
+using namespace std;
+
+int n, k;
+int plug[101];
+
+bool isPluged(int p, int arr[])
+{
+	for(int i = 0; i < n; i++) {
+		if(arr[i] == p) return true;
+	}
+	return false;
+}
+int unplug(int arr[], int idx)
+{
+	int rslt = -1;
+	int count[n] = {0};
+	for(int i = idx + 1; i < k; i++) {
+		for(int j = 0; j < n; j++) {
+			if(arr[j] == plug[i]) count[j]++;
+		}
+	}
+	
+	for(int i = 0; i < n; i++) {
+		if(count[i] == 0) rslt = i;
+	}
+	if(rslt == -1) {
+		for(int i = 0; i < n; i++) {
+			if(plug[k - 1] == arr[i]) {
+				rslt = i;
+				break;
+			}
+		}
+	}
+	return rslt;
+}
+void print(int arr[])
+{
+	for(int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
+int main()
+{
+	cin >> n >> k;
+	for(int i = 0; i < k; i++) {
+		cin >> plug[i];
+	}
+	
+	int cnt = 0;
+	int j = 0;
+	int pluged[n] = {0};
+	for(int i = 0; i < k; i++) {
+		if(isPluged(plug[i], pluged)) continue;
+		if(j != n) {
+			pluged[j] = plug[i];
+			j++;
+		}
+		else {
+			int idx = unplug(pluged, i);
+			pluged[idx] = plug[i];
+			cnt++;
+		}
+	}
+	
+	cout << cnt << endl;
+}
