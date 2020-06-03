@@ -1,0 +1,64 @@
+#if 0
+// 섬의 개수 
+//https://www.acmicpc.net/problem/4963
+#include <iostream>
+#include <cstring> //memset
+#define MAXN (50)
+using namespace std;
+
+int map[MAXN + 5][MAXN + 5];
+int visited[MAXN + 5][MAXN + 5];
+int dh[] = { -1,1,0,0,-1,-1,1,1};
+int dw[] = { 0,0,-1,1,-1,1,1,-1 };
+int W, H;
+void DFS(int h, int w) {
+
+	visited[h][w] = 1;
+
+	for (int i = 0; i < 8; i++) {
+		int nh = h + dh[i];
+		int nw = w + dw[i];
+
+		if (visited[nh][nw] == 1 || map[nh][nw] == 0)continue;
+		if (nh < 0 || nw < 0 || nh >= H|| nw >= W)continue;
+
+		DFS(nh, nw);
+	}
+}
+void InputData() {
+
+	while (1) {
+		memset(map, 0, sizeof(map)); //map초기화
+		memset(visited, 0, sizeof(visited)); //visited초기화
+		int sol = 0;
+		scanf("%d %d", &W, &H);
+	
+		if (W == 0 && H == 0) return ;
+		for (int i = 0; i < H; i++) {
+			for (int j = 0; j < W; j++) {
+				scanf("%d", &map[i][j]);
+			}
+		}
+
+		for (int i = 0; i < H; i++) {//세로
+			for (int j = 0; j < W; j++) { //가로
+				if (map[i][j] == 1 && visited[i][j] == 0) {
+					DFS(i, j);
+					//printf("%d %d\n", i, j);
+					sol++;
+				}
+			}
+		}
+		printf("%d\n", sol);
+
+
+	}
+}
+int main() {
+
+	freopen("input.txt", "r", stdin);
+	InputData();
+
+	return 0;
+}
+#endif
