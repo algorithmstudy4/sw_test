@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+
+#define NUM 2
+
+using namespace std;
+
+int x, n;
+vector<int> length;
+
+int main()
+{
+	cin >> x;
+	cin >> n;
+	
+	int l;
+	for(int i = 0; i < n; i++) {
+		cin >> l;
+		length.push_back(l);
+	}
+	
+	x *= 10000000;
+	 
+	int dif = 0;
+	int flag = 0;
+	int max = 0;
+	for(int i = 0; i < n; i++) {
+		dif = x - length[i];
+		for(int j =  i + 1; j < n; j++) {
+			if(dif == length[j]) {
+				flag = 1;
+				dif = dif ? length[j] : dif > length[j];
+				max = max ? dif : max > dif;
+				cout << "max : " << max;
+			}
+		}
+	}
+	
+	if(flag) { cout << "yes " << x - max << " " << max; }
+	else { cout << "danger"; }
+}
