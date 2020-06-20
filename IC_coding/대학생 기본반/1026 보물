@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
+vector<int> A;
+vector<int> B;
+int n;
+
+int main()
+{
+	cin >> n;
+	int tmp = 0;
+	
+	for(int i = 0; i < 2; i++) {
+		for(int j = 0; j < n; j++) {
+			cin >> tmp;
+			if(i == 0) A.push_back(tmp);
+			if(i == 1) B.push_back(tmp);
+		}
+	}
+	
+	sort(A.begin(), A.end());
+	sort(B.begin(), B.end(), greater<int>());
+	
+	int ans = 0;
+	
+	for(int i = 0; i < n; i++) {
+		ans += A[i] * B[i];
+	}
+	
+	cout << ans << endl;
+}
