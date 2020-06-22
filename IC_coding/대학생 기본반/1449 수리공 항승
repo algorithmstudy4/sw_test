@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> v;
+
+int main()
+{	
+	int N, L;
+	
+	cin >> N >> L;
+	
+	int tmp = 0;
+	for(int i = 0; i < N; i++) {
+		cin >> tmp;
+		v.push_back(tmp);
+	}
+	
+	sort(v.begin(), v.end());
+	
+	int cnt = 1;
+	tmp = v[0];
+	for(int i = 0; i < N; i++) {
+		if(v[i] - tmp + 1 > L) {
+			cnt++;
+			tmp = v[i];
+		}
+	}
+	
+	cout << cnt << endl;
+} 
