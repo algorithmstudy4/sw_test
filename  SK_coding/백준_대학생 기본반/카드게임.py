@@ -41,7 +41,7 @@ if card_color[0] == card_color[4]:
 
         score = card_num[4] + 600
 
-elif (card_num[0] == card_num[3] and card_num[4] != card_num[3]) or (card_num[1] == card_num[4] and card_num[0] != card_num[1]):
+elif (card_num[0] == card_num[3]) or (card_num[1] == card_num[4]):
 
     score = card_num[4] + 800
 
@@ -49,7 +49,7 @@ elif (card_num[0] == card_num[2] and card_num[3] == card_num[4]) or (card_num[0]
 
     if card_num[0] == card_num[2] and card_num[3] == card_num[4]:
 
-        score = card_num[0]*10 + card_num[3] + 700
+        score = card_num[2]*10 + card_num[3] + 700
 
     elif card_num[0] == card_num[1] and card_num[2] == card_num[4]:
 
@@ -61,19 +61,9 @@ elif card_num[0] == card_num[1]-1 and card_num[1] == card_num[2]-1 and card_num[
 
 elif (card_num[0] == card_num[2]) or (card_num[1] == card_num[3]) or (card_num[2] == card_num[4]):
 
-    if card_num[0] == card_num[2]:
+    score = 400 + card_num[2]
 
-        score = 400 + card_num[0]
-
-    elif card_num[1] == card_num[3]:
-
-        score = 400 + card_num[1]
-
-    elif card_num[2] == card_num[4]:
-
-        score = 400 + card_num[2]
-
-elif (card_num[0] == card_num[1] and card_num[2]) == card_num[3] or (card_num[0] == card_num[1] and card_num[3] == card_num[4]) or (card_num[1] == card_num[2] and card_num[3] == card_num[4]):
+elif (card_num[0] == card_num[1] and card_num[2] == card_num[3]) or (card_num[0] == card_num[1] and card_num[3] == card_num[4]) or (card_num[1] == card_num[2] and card_num[3] == card_num[4]):
 
     score = 300 + card_num[1] + card_num[3]*10
 
