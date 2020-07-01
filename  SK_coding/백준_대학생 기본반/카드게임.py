@@ -33,7 +33,7 @@ if card_color[0] == card_color[4] and card_num[0] == card_num[1]-1 and card_num[
 
 elif (card_num[0] == card_num[3]) or (card_num[1] == card_num[4]):
 
-    score = card_num[4] + 800
+    score = card_num[2] + 800
 
 elif (card_num[0] == card_num[2] and card_num[3] == card_num[4]) or (card_num[0] == card_num[1] and card_num[2] == card_num[4]):
 
