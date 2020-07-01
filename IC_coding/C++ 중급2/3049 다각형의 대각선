@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int N;
+	int rslt = 1;
+	
+	cin >> N;
+	
+	for(int i = 0; i < 4; i++) {
+		rslt *= (N - i);
+	}
+	
+	rslt /= 24;
+	
+	cout << rslt;
+}
