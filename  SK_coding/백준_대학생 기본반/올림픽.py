@@ -7,15 +7,14 @@ bronze = []
 
 same_gold_country = []
 same_silver_country = []
-same_bronze_country = []
 
 for i in range(0, country_all):
 
-    a, b, c = map(int, input().split())
+    num, a, b, c = map(int, input().split())
 
-    gold.append(a)
-    silver.append(b)
-    bronze.append(c)
+    gold.insert(num-1, a)
+    silver.insert(num-1, b)
+    bronze.insert(num-1, c)
 
 
 point = gold[country-1]
@@ -42,8 +41,6 @@ if not same_gold_country:
 
 else:
 
-    level = 0
-
     point = silver[country-1]
 
     for i in range(0, len(same_gold_country)):
@@ -62,8 +59,6 @@ else:
 
     else:
 
-        level = 0
-
         point = bronze[country-1]
 
         for i in range(0, len(same_silver_country)):
@@ -72,9 +67,15 @@ else:
 
                 level = level + 1
 
-            elif bronze[same_silver_country[i]] == point:
+        print(level)
 
-                same_bronze_country.append(same_silver_country[i])
 
-        # level reset 잘못됨.
-        # 마지막 동메달 비교 추가.
+""" 
+4 4 
+1 1 0 0
+2 1 0 0
+3 0 1 0
+4 0 1 0
+
+--> error
+""
