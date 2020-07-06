@@ -4,7 +4,9 @@ n, m = map(int, input().split())
 m1 = []
 m2 = []
 
-for i in range(0, n):
+count = 1
+
+for i in range(0, m):
 
     a, b = map(int, input().split())
 
@@ -12,12 +14,49 @@ for i in range(0, n):
     m2.append(b)
 
 
-for i in range(0, len(m1)):
+for i in range(0, m):
 
-    point = m1[0]
+    point1 = m1[0]
+    point2 = m2[0]
 
-    for j in range(0, len(m1)):
+    for j in range(1, len(m1)):
 
+        if m1[j] == point1:
 
-        # 간선 연결 끝 -> num++,  루프 새로 반복,
-        # 간선 연결 -> 연결 점 리스트 삭제
+            del m1[0]
+            del m1[j-1]
+            m1.insert(0, m2[j])
+            del m2[j]
+            break
+
+        elif m2[j] == point1:
+
+            del m1[0]
+            del m2[j]
+            m1.insert(0, m1[j-1])
+            del m1[j]
+            break
+
+        elif m1[j] == point2:
+
+            del m2[0]
+            del m1[j]
+            m2.insert(0, m2[j-1])
+            del m2[j]
+            break
+
+        elif m2[j] == point2:
+
+            del m2[0]
+            del m2[j-1]
+            m2.insert(0, m1[j])
+            del m1[j]
+            break
+
+        elif j == len(m1)-1:
+            count = count + 1
+            del m1[0]
+            del m2[0]
+            break
+
+print(count)
