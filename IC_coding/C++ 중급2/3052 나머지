@@ -1,0 +1,25 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int main()
+{
+	vector<int> v;
+	int n, r;
+	
+	int flag;
+	
+	for(int i = 0; i < 10; i++) {
+		cin >> n;
+		r = n % 42;
+		if(v.size() == 0) v.push_back(r);
+		flag = 0;
+		for(int i = 0; i < v.size(); i++) {
+			if(r == v[i]) flag = 1;
+		}
+		if(!flag) v.push_back(r);
+	}
+	
+	cout << v.size();
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+	int T;
+	cin >> T;
+	
+	string S;
+	vector<char> s;
+	
+	int sum, ascii = 0;
+	
+	for(int i = 'A'; i <= 'Z'; i++) {
+		ascii += i;	
+	}
+
+	for(int t = 0; t < T; t++) {
+		cin >> S;
+		for(int i = 0; i < S.length(); i++) {
+			s.push_back(S[i]);
+		}
+		sort(s.begin(), s.end());
+		s.erase(unique(s.begin(), s.end()), s.end());
+		for(int i = 0; i < s.size(); i++) {
+			sum += s[i];
+		}
+		sum = 0;
+		cout << ascii - sum << endl;
+	}
+}
