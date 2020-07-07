@@ -15,3 +15,9 @@
 3. 프로그래머스 (2단계 '쇠막대기')
 4. 리트코드 (미듐단계 'generate parentheses')
 5. 백준 1927 (최소힙)
+## 7월 첫째주
+1. 리트코드 (binary search 'Find First and Last Position of Element in Sorted Array')
+2. 리트코드 (string 'Multifly strings')
+3. 프로그래머스 (3단계 '예산')
+4. 프로그래머스 (3단계 '타일')
+5. 프로그래머스 (3단계 '정수 삼각형')
