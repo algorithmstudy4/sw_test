@@ -16,59 +16,77 @@ for i in range(0, country_all):
     silver.insert(num-1, b)
     bronze.insert(num-1, c)
 
-
-point = gold[country-1]
-
-level = 1
+level_list = []
 
 for i in range(0, country_all):
 
-    if i == country-1:
+    point = gold[i]
 
-        continue
+    level = 1
 
-    if gold[i] > point:
+    for i in range(0, country_all):
 
-        level = level + 1
+        if i == country-1:
 
-    elif gold[i] == point:
+            continue
 
-        same_gold_country.append(i)
-
-if not same_gold_country:
-
-    print(level)
-
-else:
-
-    point = silver[country-1]
-
-    for i in range(0, len(same_gold_country)):
-
-        if silver[same_gold_country[i]] > point:
+        if gold[i] > point:
 
             level = level + 1
 
-        elif silver[same_gold_country[i]] == point:
+        elif gold[i] == point:
 
-            same_silver_country.append(same_gold_country[i])
+            same_gold_country.append(i)
 
-    if not same_silver_country:
+    if not same_gold_country:
 
-        print(level)
+        level_list.append(level)
 
     else:
 
-        point = bronze[country-1]
+        point = silver[country-1]
 
-        for i in range(0, len(same_silver_country)):
+        for i in range(0, len(same_gold_country)):
 
-            if bronze[same_silver_country[i]] > point:
+            if silver[same_gold_country[i]] > point:
 
                 level = level + 1
 
-        print(level)
+            elif silver[same_gold_country[i]] == point:
 
+                same_silver_country.append(same_gold_country[i])
+
+        if not same_silver_country:
+
+            level_list.append(level)
+
+        else:
+
+            point = bronze[country-1]
+
+            for i in range(0, len(same_silver_country)):
+
+                if bronze[same_silver_country[i]] > point:
+
+                    level = level + 1
+
+            level_list.append(level)
+
+new_list = []
+
+for i in level_list:
+
+    if i in new_list:
+
+        if i < level_list[country-1]:
+
+            level_list[country-1] = level_list[country-1] - 1
+
+    elif i not in new_list:
+
+        new_list.append(i)
+
+print(level_list[country-1])
 
 """ 
 4 4 
@@ -79,3 +97,5 @@ else:
 
 --> error
 """
+
+# time error
