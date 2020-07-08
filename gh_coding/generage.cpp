@@ -1,4 +1,4 @@
-// 리트코드 Generate 
+// 리트코드 Generate parentheses
 // 미듐 문제
 // https://leetcode.com/problems/generate-parentheses/
 
