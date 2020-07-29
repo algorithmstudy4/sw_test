@@ -1,0 +1,69 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+const int MAX = 1299709 + 1;
+int minFactor[MAX];
+
+void eratosthenes(void)
+{
+        minFactor[0] = minFactor[1] = -1;
+        for (int i = 2; i < MAX; i++)
+                 minFactor[i] = i;
+
+        for (int i = 2; i*i < MAX; i++)
+                 if (minFactor[i] == i)
+                         for (int j = i * i; j < MAX; j += i)
+                                 if (minFactor[j] == j)
+                                          minFactor[j] = i;
+}
+
+int main(void)
+{
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        int T;
+        cin >> T;
+
+        eratosthenes();
+
+        for (int t = 0; t < T; t++)
+        {
+                 int K;
+                 cin >> K;
+
+                 if (minFactor[K] == K)
+                         cout << 0 << "\n";
+
+                 else
+                 {
+                         int result = 1;
+                         int temp = K + 1;
+
+                         while (1)
+                         {
+                                 if (minFactor[temp] == temp)
+                                          break;
+
+                                 temp++;
+                                 result++;
+                         }
+
+                         temp = K - 1;
+
+                         while (1)
+                         {
+                                 if (minFactor[temp] == temp)
+                                          break;
+
+                                 temp--;
+                                 result++;
+                         }
+                         cout << result + 1 << "\n";
+                 }
+        }
+        return 0;
+}
+
+출처: https://jaimemin.tistory.com/1116 [꾸준함]
