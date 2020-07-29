@@ -1,0 +1,61 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <cstdio>
+#include <stack>
+#include <algorithm>
+using namespace std;
+ 
+int dp[100005];
+ 
+struct VAL {
+  int num;
+  int max;
+};
+ 
+int main() {
+  dp[1] = 1;
+  stack<VAL> stk;
+  int st_size = 0;
+  for(int i = 2; i <= 100000; i++) {
+    int getMax = -1;
+    VAL val, temp; val.num = val.max = i;
+     
+    if(!dp[val.num]) {
+      while(val.num != 1) {
+        if(val.num <= 100000) {
+          if(!dp[val.num]) stk.push({val.num, val.max});
+          val.max = val.num = val.num % 2 == 0 ? val.num / 2 : val.num * 3 + 1;
+        }else {
+          temp = stk.top(); stk.pop();
+          temp.max = temp.max < val.max ? val.max : temp.max;
+          stk.push(temp);
+ 
+          val.max = val.num = val.num % 2 == 0 ? val.num / 2 : val.num * 3 + 1;
+        }
+ 
+        if(val.num <= 100000 && dp[val.num]) {
+          temp = stk.top(); stk.pop();
+          if(dp[val.num] > temp.max)
+            temp.max = dp[val.num];
+ 
+          stk.push(temp);
+          break;
+        }
+      }
+ 
+      while(!stk.empty()) {
+        temp = stk.top(); stk.pop();
+ 
+        getMax = temp.max < getMax ? getMax : temp.max;
+        dp[temp.num] = getMax;
+      }
+    }
+  }
+ 
+  int t, n;
+  scanf("%d", &t);
+  while(t--) {
+    scanf("%d", &n);
+    printf("%d\n", dp[n]);
+  }
+  return 0;
+}
