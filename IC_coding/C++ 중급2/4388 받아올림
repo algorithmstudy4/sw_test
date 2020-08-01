@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int n1 = 1, n2 = 1;
+	int s1, s2;
+	int cnt;
+	int rslt;
+	
+	while(1) {
+		cin >> n1 >> n2;
+		if(n1 == 0 && n2 == 0) break;
+		cnt = 0;
+		s1 = n1; s2 = n2;
+		while(s1 != 0 && s2 != 0) {
+			//cout << "s1 : " << s1 << ", s2 : " << s2 << endl; 
+			rslt = s1 % 10 + s2 % 10;
+			s1 /= 10; s2 /= 10;
+			if(rslt >= 10) {
+				s1++;
+				cnt++;
+			}
+		}
+		cout << cnt << endl;
+	}
+}
