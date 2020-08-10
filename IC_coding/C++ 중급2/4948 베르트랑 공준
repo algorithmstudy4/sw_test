@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int n, root, M, N, cnt;  
+  while(1){
+    cin>>n;    
+    if(!n)
+      break;
+
+    M = n+1;
+    N = n*2;
+
+    cnt = 0;
+    
+    for(int i=M; i<=N; i++){
+      root = sqrt(i);
+      if(root == 1 && i != 1){
+        cnt++;
+        continue;
+      
+      if(i%2){
+        for(int j=2; j<=root; j++){
+          if(!(i%j))
+            break;
+          if(j == root){
+            cnt++;
+          }
+        }
+      }
+    }
+    cout<<cnt<<'\n';
+  }  
+}
