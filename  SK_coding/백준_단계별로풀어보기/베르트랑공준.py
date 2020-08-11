@@ -1,4 +1,4 @@
-
+import sys
 
 y = 0
 num_list = []
@@ -21,8 +21,9 @@ for i in range(0, len(num_list)-1):
     for j in range(num_list[i]+1, (2*num_list[i])+1):
 
         count = 0
+        k = 2
 
-        for k in range(2, j):
+        while (k*k < j):
 
             if j % k == 0:
 
@@ -32,7 +33,9 @@ for i in range(0, len(num_list)-1):
 
                 count = count + 1
 
-        if count == j - 2:
+            k = k + 1
+
+        if count == int(j**0.5) - 1:
 
             x = x+1
 
