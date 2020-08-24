@@ -15,7 +15,7 @@ for i in range(leng // 2):
     for x in range(len(a) - 1):
         for y in range(x + 1, len(a)):
             sum1 += team[a[x]][a[y]]  + team[a[y]][a[x]]
-            sum2 += team[b[x]][b[y]] + team[b[x]][b[y]]
+            sum2 += team[b[x]][b[y]] + team[b[y]][b[x]]
     sum = abs(sum1 - sum2)
     if sum < ans:
         ans = sum
