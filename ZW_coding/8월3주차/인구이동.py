@@ -1,52 +1,53 @@
+from itertools import combinations
 from collections import deque
-
-N,L,R = map(int, input().split())
+N, M = map(int, input().split())
 mp = []
-for _ in range(N):
-    mp.append(list(map(int,input().split())))
-d = [[False for _ in range(N)] for c in range(N)]
-dir = [(0,1), (0,-1), (1,0), (-1,0)]
-def bfs(x, y):
-    q = deque()
-    d[x][y] = True
-    q.append((x, y, mp[x][y]))
-    val = mp[x][y]
-    lset = set()
-    lset.add((x,y))
-    while q:
-        tp = q.popleft()
-        for di in dir:
-            nx,ny = tp[0] + di[0],tp[1] + di[1]
-            if 0 <= nx < N and 0 <= ny < N:
-                if d[nx][ny] == False:
-                    if L <= abs(tp[2] - mp[nx][ny]) <= R:
-                        d[nx][ny] = True
-                        val += mp[nx][ny]
-                        lset.add((nx, ny))
-                        q.append((nx, ny, mp[nx][ny]))
-    if len(lset) == 1:
-        return False
-    val = val // len(lset)
-    for x in lset:
-        mp[x[0]][x[1]] = val
-    return True
+for i in range(N):
+    mp.append(list(map(int, input().split())))
 
-ans = 0
-while True:
+canbe = []
+notbe = []
+for i in range(N):
+    for j in range(M):
+        if mp[i][j] == 0:
+             canbe.append((i, j))
+        elif mp[i][j] == 2:
+            notbe.append((i, j))
 
-    isit = False
+posi = list(combinations(canbe, 3))
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+def sumit(d):
+    global N, M
+    global mp
+    ret = 0
     for i in range(N):
-        for j in range(N):
-            if d[i][j] == False:
-                ok = bfs(i, j)
-                if ok:
-                    isit = True
-    #print()
-    #for xt in mp:
-     #   print(xt)
-    if not isit:
-        break
-
-    ans += 1
-    d = [[False for _ in range(N)] for c in range(N)]                
-print(ans)                
+        for j in range(M):
+            if mp[i][j] == 0 and d[i][j] == 0:
+                ret +=1
+    return ret
+ans = 0
+for x in posi:
+    q = deque()
+    d = [[0 for _ in range(M)] for __ in range(N)]
+    for y in x:
+        d[y[0]][y[1]] = 1
+    for o in notbe:
+        q.append(o)
+        d[o[0]][o[1]] = 1
+    while len(q):
+        newthing = q.popleft()
+        for i in range(4):
+            nx, ny = newthing[0] + dx[i], newthing[1] + dy[i]
+            if nx < 0 or nx >= N or ny < 0 or ny >= M:
+                continue
+            if mp[nx][ny] == 1:
+                continue
+            if d[nx][ny] == 1:
+                continue
+            d[nx][ny] = 1
+            q.append((nx, ny))
+    sum = sumit(d)
+    if sum > ans :
+        ans = sum
+print(ans)
