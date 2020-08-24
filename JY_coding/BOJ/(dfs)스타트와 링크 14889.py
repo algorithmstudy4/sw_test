@@ -1,8 +1,5 @@
-
 N = int(input())
-
 S = [list(map(int, input().split())) for i in range(N)]
-
 team = [0 for _ in range(N)]
 d = 99999
 
@@ -25,15 +22,11 @@ def dfs(cur,count):
     if(count == (N//2)):
         ability()
         return d
-
     #(1,1,1,0,0,0) 팀 나누기
     for i in range(cur, N):
         team[i] = 1
         dfs(i+1, count+1)
         team[i] = 0
-
-
-
 
 dfs(0,0)
 print(d)
