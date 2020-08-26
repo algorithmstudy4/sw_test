@@ -15,4 +15,4 @@ https://www.acmicpc.net/workbook/view/1152
 1. 치킨배달
 2. 테트로미노
 3. 미세먼지 안녕
-4. 
+4. 퇴사
