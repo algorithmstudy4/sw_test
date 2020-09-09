@@ -1,6 +1,9 @@
+
+
 from sys import *
 
-input = stdin.readline
+size = 0
+eat = 0
 
 
 def level_up():
@@ -11,6 +14,7 @@ def level_up():
     return
 
 
+input = stdin.readline
 n = int(input())
 
 board = [[int(x) for x in input().split()] for y in range(n)]
