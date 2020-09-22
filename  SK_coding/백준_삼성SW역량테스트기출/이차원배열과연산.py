@@ -10,14 +10,13 @@ board = [[int(x) for x in input().split()] for y in range(3)]
 def cal_r(board):
 
     size = 0
+    add_zero = 0
 
     for i in range(len(board)):
 
         count = {}
 
         for j in range(len(board[i])):
-
-            count[board[i][j]]: count[board[i][j]] + 1
 
             if board[i][j] == 0:
                 continue
@@ -83,8 +82,8 @@ while True:
 
         else:
 
-            transpose(board)
+            board = transpose(board)
             cal_r(board)
-            transpose(board)
+            board = transpose(board)
 
             time += 1
