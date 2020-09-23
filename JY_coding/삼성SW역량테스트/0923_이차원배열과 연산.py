@@ -1,5 +1,4 @@
 '''
-풀이팁)
 Collections.Counter : 컨테이너에 동일한 값이 몇개인지 사용하는 객체 (return 딕셔너리)
 행열 변환 후 사용.(transpose) - zip
 '''
